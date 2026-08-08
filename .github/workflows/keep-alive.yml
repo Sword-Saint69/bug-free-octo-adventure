@@ -3,7 +3,8 @@ name: Backend health monitor
 on:
   schedule:
     # Offset from the top of the hour to reduce GitHub Actions scheduling delays.
-    - cron: "7,17,27,37,47,57 * * * *"
+    # Five minutes is GitHub Actions' shortest supported schedule interval.
+    - cron: "3/5 * * * *"
   workflow_dispatch:
 
 permissions:

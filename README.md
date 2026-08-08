@@ -13,7 +13,8 @@ settings. Never commit a real `.env` file.
 ## Optional external health monitor
 
 The `Backend health monitor` GitHub Actions workflow checks the deployed API
-every ten minutes. In the GitHub repository, create an Actions secret named
+every five minutes, which is GitHub Actions' shortest supported schedule.
+In the GitHub repository, create an Actions secret named
 `BACKEND_HEALTH_URL` containing the full health endpoint, for example:
 
 ```text
