@@ -1,0 +1,12 @@
+.env
+.runtime-config.json
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.coverage
+htmlcov/
+.venv/
+venv/
+.idea/
+.vscode/

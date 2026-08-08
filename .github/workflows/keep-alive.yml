@@ -1,0 +1,40 @@
+name: Backend health monitor
+
+on:
+  schedule:
+    # Offset from the top of the hour to reduce GitHub Actions scheduling delays.
+    - cron: "7,17,27,37,47,57 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-health-monitor
+  cancel-in-progress: true
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      HEALTH_URL: ${{ secrets.BACKEND_HEALTH_URL }}
+    steps:
+      - name: Validate configuration
+        run: |
+          if [ -z "$HEALTH_URL" ]; then
+            echo "BACKEND_HEALTH_URL repository secret is not configured."
+            exit 1
+          fi
+
+      - name: Check backend health
+        run: |
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --location \
+            --max-time 30 \
+            --retry 2 \
+            --retry-delay 5 \
+            "$HEALTH_URL"

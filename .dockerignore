@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.env
+.runtime-config.json
+test.py
+test_api.py
+Dockerfile*
+.git/
+.gitignore
