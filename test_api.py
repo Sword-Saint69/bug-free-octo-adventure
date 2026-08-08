@@ -13,6 +13,9 @@ def test_health():
     assert res.status_code == 200
     assert res.json()["mode"] == "pure_backend_api"
 
+    assert client.head("/health").status_code == 200
+    assert client.options("/health").status_code == 200
+
 def test_root_redirect():
     res = client.get("/")
     assert res.status_code in (307, 302)

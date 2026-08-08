@@ -41,7 +41,11 @@ def root_redirect():
     """
     return RedirectResponse(url="/docs")
 
-@app.get("/health", summary="API Health Check Status")
+@app.api_route(
+    "/health",
+    methods=["GET", "HEAD", "OPTIONS"],
+    summary="API Health Check Status",
+)
 def health_check():
     """
     Server health check status return cheyunna endpoint.
